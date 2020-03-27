@@ -1,7 +1,7 @@
 # Antakya Kültürel Mirası Koruma Derneği Website Projesi
 
 
-# Kullanılan Teknolojiler
+Kullanılan Teknolojiler
 
       - HTML / CSS / JAVASCRIPT
       - PHP / MYSQL
