@@ -1,0 +1,84 @@
+@media only screen and (max-width:320px){
+
+
+   
+}
+@media only screen and (max-width: 600px) {
+ .navbar-brand img{
+    width:100px !important;
+}
+    .navbar-collapse{
+           background-color:rgba(0,0,0,0.7) !important;
+     position: relative;
+
+        
+    }
+    .selectpicker{
+        margin-top: 10px !important;
+        position: absolute;
+       right: 0!important;
+        
+    
+    }
+    .mHeads{
+       font-size: 60px!important;
+    line-height: 60px!important;
+        text-shadow: 1px 2px 10px rgba(0,0,0,0.5);
+   
+    }
+    .nav-link{
+        margin-top: 8px;
+        margin-bottom:8px;
+        text-align: center;
+    }
+    .footer{
+        
+        position: relative;
+        
+        
+    }
+
+   
+}
+
+@media only screen and (max-width: 992px) {
+ .navbar-brand img{
+     margin-left: 40px;
+    width:150px !important;
+}
+
+.card-img{
+    width: 100%!important;
+    height: 300px!important;
+
+}
+.menu-x{
+    margin:0!important;
+    padding:0!important;
+    width: 100%!important;
+}
+    .navbar-collapse{
+           background-color:rgba(0, 0, 0,0.9)!important;
+        padding: 30px;
+        
+    }
+    .footer{
+        text-align: center;
+    }
+.nav-link{
+        font-size: 16px !important;
+}
+
+#carousel_nexty{
+    display: none!important;
+    visibility: hidden!important;
+}
+.blank-wrap{
+    height: 100px;
+}
+.slider-controller{
+    display: none!important;
+    visibility: hidden!important;
+}
+    
+}
