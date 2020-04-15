@@ -390,3 +390,39 @@ if(isset($_GET["gallery_delete"])=="ok"){
             Header('Location:../haber.php?durum=error');
 
     }
+
+    if(isset($_POST["event_update"])){
+
+        $id=$_POST["id"];
+        $title=$_POST["title"];
+        $title_en=$_POST["title_en"];
+        $description=$_POST["description"];
+        $description_en=$_POST["description_en"];
+        $date=$_POST["date"];
+        $uploads_dir="../../assets/uploads/events";
+
+        if(file_exists($_FILES["img"]["tmp_name"])){
+        @$name=$_FILES['img']['name'];
+        $f_type=substr($name,-3);
+        @$tmp_name =$_FILES['img']['tmp_name'];
+        $r1=rand(20000,32000);
+        $r2=rand(20000,32000);
+    
+        $img_name= $r1.$r2;
+        $dirr=substr($uploads_dir,6)."/".$img_name.".".$f_type;
+        
+        $sql="update events set title=$title,title_en=$title_en,description=$description,description_en=$description_en,date=$date,img=$dirr where id=$id";
+        }else
+        $sql="update events set title=$title,title_en=$title_en,description=$description,description_en=$description_en,date=$date where id=$id";
+
+        
+
+        $result=$conn->prepare($sql);
+
+        if($result->execute()){
+     
+            Header('Location:../etkinlik.php?durum=ok');
+        }else
+            Header('Location:../etkinlik.php?durum=error');
+       
+    }

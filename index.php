@@ -95,7 +95,7 @@
         <div class="card-deck">
                
                <?php 
-               $result=$conn->query("select * from content order by c_id DESC limit 3");
+               $result=$conn->query("select * from content order by c_id DESC limit 6");
                
                while($row=$result->fetch_assoc()){ ?>
                                <div class="col-sm-6 col-md-4 col-lg-4 ">

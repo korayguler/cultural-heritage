@@ -52,7 +52,9 @@ box-shadow: 2px 2px 15px black;
    border-top:1px solid rgb(134, 133, 133);
     color:white!important;
 }
-
+.bg{
+    padding:0 0 50px 0;
+}
  
 .hScoo h3 {
     color: white;

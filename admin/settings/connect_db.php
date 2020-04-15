@@ -1,6 +1,6 @@
 <?php
 ini_set('session.gc_maxlifetime', 2);
-session_set_cookie_params(120);
+session_set_cookie_params(600);
 session_start();
 ob_start();
 

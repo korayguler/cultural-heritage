@@ -55,7 +55,7 @@ $row = $result->fetch_assoc();
 <body onload="document.body.style.opacity='1'">
 
     <nav class="navbar navbar-expand-lg fixed-top" id="menu-sc">
-        <div class="container menu-x">
+        <div class="container  menu-x">
             <a class="navbar-brand" href="index.php"><?php echo  '<img src="' . $lang["logo"] . '">' ?></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon">M</span>

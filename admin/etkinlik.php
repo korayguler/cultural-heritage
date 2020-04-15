@@ -58,7 +58,9 @@ if (!isset($_SESSION['admin_logged'])) {
                 <th scope="col">Etkinlik Başlık</th>
                 <th scope="col">Etkinlik Açıklama</th>
                 <th scope="col">Slider Link</th>
+                <th scope="col">Düzenle</th>
                 <th scope="col">Sil</th>
+              
 
 
               </tr>
@@ -72,7 +74,10 @@ if (!isset($_SESSION['admin_logged'])) {
                   <td><?php echo $row_event["title"]; ?></td>
                   <td ><?php echo substr($row_event["description"],0,70); ?></td>
                   <td><img class="img-thumbnail" width="200px" src='../<?php echo $row_event["img"] ?>'/> </td> 
+                  <td><a href="etkinlik-duzenle.php?event_id=<?php echo $row_event['id']; ?>" class="btn btn-success">Düzenle</a></td>
                   <td><a href="settings/islem.php?event_id=<?php echo $row_event['id']; ?>&event_delete=ok" class="btn btn-warning">Sil</a></td>
+                  
+                
                 </tr>
               <?php } ?>
             </tbody>
