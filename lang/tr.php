@@ -38,7 +38,6 @@ $lang = array(
 "c_konu" =>"Konu",
 "sonraki"=>"Sonraki",
 "onceki"=>"Önceki",
-
 "eklenme_tarihi"=>"Eklenme Tarihi",
 
 

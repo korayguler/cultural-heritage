@@ -58,6 +58,7 @@ if (!isset($_SESSION['admin_logged'])) {
                 <th scope="col">Başlık</th>
 
                 <th scope="col">URL</th>
+                <th scope="col">Düzenle</th>
                
                 <th scope="col">Sil</th>
 
@@ -76,6 +77,7 @@ if (!isset($_SESSION['admin_logged'])) {
                   
                   
                  
+                  <td><a href="haber-duzenle.php?id=<?php echo $row_content['id']; ?>&media_edit=ok" class="btn btn-success">Düzenle</a></td>
 
                   <td><a href="settings/islem.php?id=<?php echo $row_content['id']; ?>&media_delete=ok" class="btn btn-warning">Sil</a></td>
                 </tr>

@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin_logged'])) {
   }
   
 
-  if(isset($_POST['gallery_add'])){
+if(isset($_POST['gallery_add'])){
 
     @$name=$_FILES['upload_images']['name'];
     $uploads_dir="../../assets/uploads/gallery";
@@ -20,18 +20,17 @@ if (!isset($_SESSION['admin_logged'])) {
     $dirr=substr($uploads_dir,6)."/".$img_name.".".$f_type;
 
 
-    $add_photo=$conn->query("insert into gallery(url,date)values(
+$add_photo=$conn->query("insert into gallery(url,date)values(
+    '".$dirr."',
+    '".time()."')");
+    $count = $add_photo->affected_rows;
 
-        '".$dirr."',
-        '".time()."')");
-        $count = $add_photo->affected_rows;
 
-
-        if($add_photo){
-         @move_uploaded_file($tmp_name,"$uploads_dir/$img_name.$f_type");
-            Header('Location:../galeri-ekle.php?durum=ok');
-        }else
-            Header('Location:../galeri-ekle.php?durum=error');
+    if($add_photo){
+        @move_uploaded_file($tmp_name,"$uploads_dir/$img_name.$f_type");
+        Header('Location:../galeri-ekle.php?durum=ok');
+    }else
+        Header('Location:../galeri-ekle.php?durum=error');
 
 
   }
@@ -120,29 +119,26 @@ if($_FILES['c_about_p']['size'] != 0){
 
 }
 
-   $update_c =  $conn->prepare("update control set 
-   c_title='".$_POST["c_title"]."',
-   c_title_en='".$_POST["c_title_en"]."',
-   c_description='".$_POST["c_description"]."',
-   c_keywords='".$_POST["c_keywords"]."',
-   c_telefon='".$_POST["c_telefon"]."',
-   c_email='".$_POST["c_email"]."',
-   c_adres='".$_POST["c_adres"]."',
-   c_adres_en='".$_POST["c_adres_en"]."',
-   c_instagram='".$_POST["c_instagram"]."',
-   c_facebook='".$_POST["c_facebook"]."',
-   c_twitter='".$_POST["c_twitter"]."',
-   c_footer_social='".$_POST["c_footer_social"]."',
-   c_footer_social_en='".$_POST["c_footer_social_en"]."',
-   c_atif='".$_POST["c_atif"]."',
-   c_about='".$_POST["c_about"]."',
-   c_about_en='".$_POST["c_about_en"]."',
-   c_atif_en='".$_POST["c_atif_en"]."'
-   where c_id='".$id."'");
+    $update_c =  $conn->prepare("update control set 
+    c_title='".addslashes($_POST["c_title"])."',
+    c_title_en='".$_POST["c_title_en"]."',
+    c_description='".addslashes($_POST["c_description"])."',
+    c_keywords='".addslashes($_POST["c_keywords"])."',
+    c_telefon='".$_POST["c_telefon"]."',
+    c_email='".$_POST["c_email"]."',
+    c_adres='".$_POST["c_adres"]."',
+    c_adres_en='".$_POST["c_adres_en"]."',
+    c_instagram='".$_POST["c_instagram"]."',
+    c_facebook='".$_POST["c_facebook"]."',
+    c_twitter='".$_POST["c_twitter"]."',
+    c_footer_social='".$_POST["c_footer_social"]."',
+    c_footer_social_en='".$_POST["c_footer_social_en"]."',
+    c_atif='".$_POST["c_atif"]."',
+    c_about='".$_POST["c_about"]."',
+    c_about_en='".$_POST["c_about_en"]."',
+    c_atif_en='".$_POST["c_atif_en"]."'
+    where c_id='".$id."'");
 
-    //$update_c->execute();
-    
-    //$count=$update_c->affected_rows;
     
     if($update_c->execute())
 {
@@ -158,14 +154,14 @@ if($_FILES['c_about_p']['size'] != 0){
 
 if(isset($_POST["admin_login"])){
 
-$admin_username=$_POST["admin_username"];
-$admin_pass=md5($_POST["admin_pass"]);
-if($admin_username && $admin_pass){
+    $admin_username=$_POST["admin_username"];
+    $admin_pass=md5($_POST["admin_pass"]);
+    if($admin_username && $admin_pass){
     $mysql =$conn->query("select * from admins where admin_username='$admin_username' and admin_pass='$admin_pass'");
     $count = $mysql->num_rows;
-    if($count>0){
-        $_SESSION["admin_logged"]= $admin_username;
-        Header("Location:../index.php");
+if($count>0){
+    $_SESSION["admin_logged"]= $admin_username;
+    Header("Location:../index.php");
 }else{
     Header("Location:../login.php?login=error");
 }
@@ -204,7 +200,6 @@ if(isset($_POST['slider_add'])){
         
     }
     if(isset($_POST['content_add'])){ 
-    //$uploads_dir="../../assets/uploads/content";
     $mysql_add_content=$conn->prepare("insert into content(c_title,c_title_en,c_description,c_description_en,c_date)values(
 
         '".$_POST["c_title"]."',
@@ -313,18 +308,16 @@ if(isset($_GET["gallery_delete"])=="ok"){
         $img_name= $r1.$r2;
         $dirr=substr($uploads_dir,6)."/".$img_name.".".$f_type;
     
-        $event_add=$conn->query("insert into events(title,title_en,description,description_en,img,date)values(
+        $event_add=$conn->prepare("insert into events(title,title_en,description,description_en,img,date)values(
     
             '".$_POST["title"]."',
             '".$_POST["title_en"]."',
-            '".$_POST["description"]."',
-            '".$_POST["description_en"]."',
+            '".addslashes($_POST["description"])."',
+            '".addslashes($_POST["description_en"])."',
             '".$dirr."',
             '".$_POST["date"]."')");
-            $count = $event_add->affected_rows;
     
-    
-            if($event_add){
+            if($event_add->execute()){
              @move_uploaded_file($tmp_name,"$uploads_dir/$img_name.$f_type");
                 Header('Location:../etkinlik-ekle.php?durum=ok');
             }else
@@ -392,37 +385,71 @@ if(isset($_GET["gallery_delete"])=="ok"){
     }
 
     if(isset($_POST["event_update"])){
-
-        $id=$_POST["id"];
-        $title=$_POST["title"];
-        $title_en=$_POST["title_en"];
-        $description=$_POST["description"];
-        $description_en=$_POST["description_en"];
-        $date=$_POST["date"];
-        $uploads_dir="../../assets/uploads/events";
+         $uploads_dir="../../assets/uploads/events";
+         $id=$_POST["id"]; 
+         $title=addslashes($_POST["title"]);
+         $title_en=addslashes($_POST["title_en"]);
+         $description=addslashes($_POST["description"]);
+         $description_en=addslashes($_POST["description_en"]);
+         $date=addslashes($_POST["date"]);
+         
+         $sql="update events set 
+         title='$title',
+         title_en='$title_en',
+         description='$description',
+         description_en='$description_en',
+         date='$date' where id=$id"; 
+         
 
         if(file_exists($_FILES["img"]["tmp_name"])){
+           
+        $srsq="select * from events where id=$id";
+        $srs=$conn->query($srsq);
+        $r=$srs->fetch_assoc();
+        $img_u= "../../".$r["img"];
+        if(file_exists($img_u)) unlink($img_u);
+        
         @$name=$_FILES['img']['name'];
+        $uploads_dir="../../assets/uploads/events";
         $f_type=substr($name,-3);
-        @$tmp_name =$_FILES['img']['tmp_name'];
+        @$tmp_name =$_FILES['img']['tmp_name'];  
         $r1=rand(20000,32000);
         $r2=rand(20000,32000);
-    
         $img_name= $r1.$r2;
         $dirr=substr($uploads_dir,6)."/".$img_name.".".$f_type;
-        
-        $sql="update events set title=$title,title_en=$title_en,description=$description,description_en=$description_en,date=$date,img=$dirr where id=$id";
-        }else
-        $sql="update events set title=$title,title_en=$title_en,description=$description,description_en=$description_en,date=$date where id=$id";
+        @move_uploaded_file($tmp_name,"$uploads_dir/$img_name.$f_type");
+    
 
-        
+        $sql="update events set 
+        title='$title',
+        title_en='$title_en',
+        description='$description',
+        description_en='$description_en',
+        date='$date',
+        img='$dirr' where id=$id";
+        echo "<script>console.log('file selected')</script>";
+        }
 
-        $result=$conn->prepare($sql);
+        $res=$conn->prepare($sql);
 
-        if($result->execute()){
-     
+        if($res->execute()){
             Header('Location:../etkinlik.php?durum=ok');
         }else
             Header('Location:../etkinlik.php?durum=error');
        
+    }
+
+    if(isset($_POST["media_edit"])){
+      $id=$_POST["id"];
+      $title=addslashes($_POST["title"]);
+      $title_en=addslashes($_POST["title_en"]);
+      $url=addslashes($_POST["url"]);
+      $sql="update media set title='$title', title_en='$title_en', url='$url' where id=$id";
+
+      $res=$conn->prepare($sql);
+      if($res->execute()){
+        Header('Location:../haber.php?durum=ok');
+    }else
+        Header('Location:../haber.php?durum=error');
+
     }

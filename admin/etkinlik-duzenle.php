@@ -47,7 +47,7 @@ if (!isset($_SESSION['admin_logged'])) {
                 <label></label>
                     <div class="form-group col-md-7 ">
                         <label>Etkinlik Başlık</label>
-                        <input type="text" name="id"  value="<?php echo $row["id"] ?>">
+                        <input type="hidden" name="id"  value="<?php echo $row["id"] ?>">
                         <input type="text" value="<?php echo $row["title"] ?>" class="form-control" name="title" placeholder="Etkinlik için başlığı giriniz">
                     </div>
 
@@ -80,7 +80,7 @@ if (!isset($_SESSION['admin_logged'])) {
                     </div>
                     
                     <div class="form-group col-md-3">
-                        <button type="submit" class="btn btn-success form-control  col-sm" name="event_update">Etkinliği Güncelle </button>
+                        <button type="submit" class="btn btn-success form-control col-sm" name="event_update">Etkinliği Güncelle </button>
                     </div>
 <br><br>
                     
