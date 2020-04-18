@@ -21,7 +21,7 @@ $result = $conn->query($sql);
 
 		<div class="row">
             <?php while($gallery=$result->fetch_assoc()){ ?>
-            <div class=" col-md-4 col-xs-6 thumb" >
+            <div class=" col-md-6 col-lg-3 col-xs-12 thumb" >
                 <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
                    data-image="<?php echo $gallery["url"]; ?>   "
                    data-target="#image-gallery">

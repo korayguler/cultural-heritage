@@ -33,8 +33,7 @@
     }
     .footer{
         
-        position: relative;
-        
+        position: relative;    
         
     }
 
@@ -80,5 +79,6 @@
     display: none!important;
     visibility: hidden!important;
 }
-    
+
+
 }

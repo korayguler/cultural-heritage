@@ -28,11 +28,17 @@ body {
 
 .img-thumbnail {    
     background-color: rgba(180, 92, 214, 0.2);
-
-box-shadow: 2px 2px 15px black;
+    box-shadow: 2px 2px 15px black;
+    height:250px!important;
+    border-radius: 5px;
 }
 
+.img-fluid{
+    border-radius: 5px;
+    border:3px solid rgba(2, 1, 2, 0.2);
+    ;
 
+}
 .hScoo {
     background-color: rgba(0, 0, 0, 0.2) !important;
    
@@ -182,7 +188,7 @@ margin-right:10px;
     font-size: 13px;
     font-style: italic;
     text-decoration: none;
-    background-color: white;
+    background-color: rgba(255, 255, 255,0.5);
     padding:5px 10px 5px 10px;
     color:black;
     border-radius: 5px;
@@ -190,7 +196,7 @@ margin-right:10px;
 .detay-n:hover{text-decoration: none;
                 color:white;
             
-    background-color: rgb(180, 92, 214);
+    background-color: rgba(180, 92, 214,0.8);
 }
 .biz{
     border:1px solid   rgba(180, 92, 214,0.5);
@@ -333,6 +339,7 @@ background-color: rgb(180, 92, 214);
   .thumb{
     margin-top: 15px;
     margin-bottom: 15px;
+    
    
   }
 .mForm{

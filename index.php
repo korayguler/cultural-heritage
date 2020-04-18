@@ -1,6 +1,6 @@
 
     <?php include 'header.php';
-    $sql = "select * from slider order by slider_sq DESC";
+    $sql = "select * from slider order by slider_id DESC";
     $result = $conn->query($sql);
     kimOnline(session_id());
 
@@ -23,7 +23,7 @@
       <div class="carousel-caption">
         <h3 class="h3-responsive mHeads"><?php if($_SESSION["lang"]=="tr") echo $row_slider["slider_title"]; else echo $row_slider["slider_title_en"];  ?></h3>
         <p class="lead"><?php echo $row_slider["slider_description"]; ?></p>
-        <a href='<?php echo $row_slider["slider_link"]; ?>'type="button" class="btn btn-secondary btn-lg mButton"><?php echo $lang["devamini_gor_button"];  ?></a>
+        <a target="_blank" href='<?php echo $row_slider["slider_link"]; ?>'type="button" class="btn btn-secondary btn-lg mButton"><?php echo $lang["devamini_gor_button"];  ?></a>
       </div>
   
       <?php } ?>

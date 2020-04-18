@@ -3,14 +3,14 @@ include 'settings/connect_db.php';
 include 'header.php';
 include 'sidebar.php'; 
 
-$getid=$_GET["id"];
 
-$result=$conn->query("select * from media where id=$getid");
-$row=$result->fetch_assoc();
+
 if (!isset($_SESSION['admin_logged'])) {
     header('Location:login.php');
   }
-  
+$getid=$_GET["id"];
+$result=$conn->query("select * from media where id=$getid");
+$row=$result->fetch_assoc();
 ?>
 
 <div id="page-wrapper">

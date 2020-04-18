@@ -32,6 +32,7 @@ $row=$result->fetch_assoc();
     <?php 
     $sql_img="select * from photos where c_id=$id";
     $img_c=$conn->query($sql_img);
+    
     $x=0;
     while($run_im=$img_c->fetch_assoc()){ ?>
     <div class="carousel-item detay <?=$x==0?' active':''?>"" >
@@ -43,7 +44,12 @@ $row=$result->fetch_assoc();
     </div>
     <?php $x++;} ?>
 
+      <?php 
+      
+      $count=$conn->query("SELECT count(*) as total from photos where c_id=$id");
+      $data=$count->fetch_assoc();
 
+      if($data['total']>1){ ?>
     <p class="detay-next">
     <a class="detay-n" href="#carousel-id" role="button" data-slide="prev">
       <span class="icon-prev" aria-hidden="true"></span> <?php echo $lang['onceki']?>
@@ -52,7 +58,7 @@ $row=$result->fetch_assoc();
       <span class="icon-next" aria-hidden="true"></span> <?php echo $lang['sonraki']?>
     </a>
   </p>
-
+    <?php } ?>
   </div>
  
 </div>

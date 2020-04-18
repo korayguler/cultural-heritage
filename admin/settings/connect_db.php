@@ -1,5 +1,5 @@
 <?php
-ini_set('session.gc_maxlifetime', 10);
+ini_set('session.gc_maxlifetime', 2);
 session_set_cookie_params(600);
 session_start();
 ob_start();
@@ -19,8 +19,6 @@ if ($conn->connect_error) {
 $conn->query("SET NAMES UTF8");
 
 
-
-
 function kimOnline($sesid){
     global $conn;
    
@@ -36,6 +34,6 @@ function KullanicilariKaldir(){
     $conn->query("DELETE FROM sessions WHERE time < ".$zaman); // 
 }
 
-
+error_reporting(false);
 
 ?>

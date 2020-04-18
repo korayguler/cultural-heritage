@@ -453,3 +453,60 @@ if(isset($_GET["gallery_delete"])=="ok"){
         Header('Location:../haber.php?durum=error');
 
     }
+
+    if(isset($_POST["content_edit"])){
+
+        $id=$_POST["id"];
+        $title=$_POST["c_title"];
+        $title_en=$_POST["c_title_en"];
+        $description=$_POST["c_description"];
+        $description_en=$_POST["c_description_en"];
+        $date=$_POST["c_date"];
+        $sql="update content set c_title='$title', c_title_en='$title_en', c_description='$description', c_description_en='$description_en', c_date='$date' where c_id=$id";
+        
+
+        if(file_exists($_FILES["upload_images"]["tmp_name"][0])){
+            //delete
+            $photo_list=$conn->query("select * from photos where c_id=$id");
+            $delete_sql="delete from photos where c_id=$id";
+            $runned=$conn->prepare($delete_sql); //veritabanından eski resimleri sil
+
+            while($row=$photo_list->fetch_assoc()){
+                $dict="../../assets/uploads/content/".$row["url"]; //dosya sisteminden sil
+                unlink($dict);}
+            
+            if($runned->execute()){
+
+          //upload
+                $r1=rand(20000,32000);
+                $r2=rand(20000,32000);    
+                $uploaded_images = array();
+                foreach($_FILES['upload_images']['name'] as $key=>$val){
+                $upload_dir = "../../assets/uploads/content/";
+                $upload_file = $upload_dir.$r1.$_FILES['upload_images']['name'][$key];
+                $filename = $r1.$_FILES['upload_images']['name'][$key];
+                if(@move_uploaded_file($_FILES['upload_images']['tmp_name'][$key],$upload_file)){
+                $uploaded_images[] = $upload_file;
+                $insert_sql = "INSERT INTO photos(c_id, url, upload_time)
+                VALUES('$id', '".$filename."', '".time()."')";
+            }
+          
+            $run=$conn->prepare($insert_sql);
+            if($run->execute())
+            $yes=TRUE;
+                else
+            $yes=FALSE;
+            
+        }}
+      
+    }
+         
+       $res=$conn->prepare($sql);
+
+        if($res->execute() && $yes){
+            Header('Location:../icerik.php?durum=ok');
+        }else
+            Header('Location:../icerik.php?durum=error');
+
+    }
+
