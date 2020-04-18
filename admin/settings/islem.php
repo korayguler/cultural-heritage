@@ -600,5 +600,37 @@ if($result->execute()){
    }else
        Header('Location:../slider.php?durum=error');
 
+}
 
+if(isset($_POST["admin_add"])){
+
+    $nick=$_POST["admin_username"];
+    $mail=$_POST["admin_mail"];
+    $rank=$_POST["admin_rank"];
+    $pass=md5($_POST["admin_pass"]);
+
+    $sql="insert into admins (admin_username,admin_mail,admin_pass,admin_rank) values('$nick',' $mail','$pass','$rank')";
+
+    $result=$conn->prepare($sql);
+
+    if($result->execute()){
+           Header('Location:../index.php?durum=ok');
+       }else
+           Header('Location:../index.php?durum=error');
+
+}
+
+if(isset($_GET["admin_delete"])=="ok"){
+
+    $id=$_GET["id"];
+    $rws=$conn->query("select * from admins where admin_id=$id");
+    $row=$rws->fetch_assoc();
+    $fsql="delete from admins where admin_id=$id";
+    $result=$conn->prepare($fsql);
+    $adminR=$row["admin_username"];
+   if($adminR!="admin"){
+    if($result->execute())
+       Header('Location:../index.php?durum=ok');  
+   }else
+   Header('Location:../index.php?durum=admin_silinemez');
 }

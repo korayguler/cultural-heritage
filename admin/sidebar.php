@@ -18,7 +18,7 @@ if (!isset($_SESSION['admin_logged'])) {
                     <li>
                         <a  href="index.php"><i class="fa fa-desktop fa-2x"></i> Panel</a>
                     </li>
-
+                    
                     <li>
                         <a  href="ayarlar.php"><i class="fa fa-dashboard fa-2x"></i> Site Ayarları</a>
                     </li>

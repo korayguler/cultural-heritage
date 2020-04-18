@@ -35,5 +35,9 @@ function KullanicilariKaldir(){
 }
 
 error_reporting(false);
-
+$adminName=$_SESSION["admin_logged"];
+$sqlS="select * from admins where admin_username='$adminName'";
+$reS=$conn->query($sqlS);
+$rowS=$reS->fetch_assoc();
+$adminRank=$rowS["admin_rank"];
 ?>

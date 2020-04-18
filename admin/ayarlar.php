@@ -1,10 +1,15 @@
 <?php include 'settings/connect_db.php'; 
 include 'header.php';
-include 'sidebar.php' ;
+include 'sidebar.php';
 
 if(!isset($_SESSION['admin_logged'])){
     header('Location:login.php');
 }
+
+if(!$adminRank==0) {header('Location:index.php?giris_engel=t');
+    
+}
+
 $sql= "select * from control";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc(); 
