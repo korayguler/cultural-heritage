@@ -34,6 +34,6 @@ function KullanicilariKaldir(){
     $conn->query("DELETE FROM sessions WHERE time < ".$zaman); // 
 }
 
-error_reporting(false);
+//error_reporting(false);
 
 ?>

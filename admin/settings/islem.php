@@ -510,3 +510,95 @@ if(isset($_GET["gallery_delete"])=="ok"){
 
     }
 
+if(isset($_POST["gallery_edit"])){
+
+    $id=$_POST["id"];
+    $sql ="select * from gallery where id=$id";
+    $result=$conn->query($sql);
+    $row=$result->fetch_assoc();
+    $dUrl="../../".$row["url"];
+
+    if(file_exists($_FILES["upload_images"]["tmp_name"])){
+    if(file_exists($dUrl)) unlink($dUrl);
+
+
+    @$name=$_FILES['upload_images']['name'];
+    $uploads_dir="../../assets/uploads/gallery";
+    $f_type=substr($name,-3);
+    @$tmp_name =$_FILES['upload_images']['tmp_name'];
+
+    $r1=rand(20000,32000);
+    $r2=rand(20000,32000);
+
+    $img_name= $r1.$r2;
+    $dirr=substr($uploads_dir,6)."/".$img_name.".".$f_type;
+
+
+$add_photo=$conn->prepare("update gallery set url='$dirr' where id=$id");
+
+    if($add_photo->execute()){
+        @move_uploaded_file($tmp_name,"$uploads_dir/$img_name.$f_type");
+        Header('Location:../galeri-duzenle.php?durum=ok');
+    }else
+        Header('Location:../galeri-duzenle.php?durum=error');
+
+}}
+
+if(isset($_POST["slider_edit"])){
+$id=$_POST["id"];
+$title=$_POST["slider_title"];
+$title_en=$_POST["slider_title"];
+$description=$_POST["slider_description"];
+$description_en=$_POST["slider_description_en"];
+$slider_link=$_POST["slider_link"];
+$slider_sq=$_POST["slider_sq"];
+echo "$title <br> $title_en <br> $description <br> $description_en <br> $slider_sq";
+
+
+$sql="update slider set 
+slider_title='$title', 
+slider_title_en='$title_en', 
+slider_description='$description', 
+slider_description_en='$description_en',
+slider_link='$slider_link', 
+slider_sq='$slider_sq' where slider_id=$id";
+
+
+if(file_exists($_FILES["slider_img"]["tmp_name"])){
+    $sqlSearch ="select * from slider where slider_id=$id";
+    $result=$conn->query($sqlSearch);
+    $row=$result->fetch_assoc();
+    $dUrl="../../".$row["slider_img_url"];
+
+    if(file_exists($dUrl)) unlink($dUrl);
+
+@$name=$_FILES['slider_img']['name'];
+    $uploads_dir="../../assets/uploads/slider";
+    $f_type=substr($name,-3);
+    @$tmp_name =$_FILES['slider_img']['tmp_name'];
+
+    $r1=rand(20000,32000);
+    $r2=rand(20000,32000);
+
+    $img_name= $r1.$r2;
+    $dirr=substr($uploads_dir,6)."/".$img_name.".".$f_type;
+
+    $sql="update slider set 
+        slider_title='$title', 
+        slider_title_en='$title_en', 
+        slider_description='$description', 
+        slider_description_en='$description_en',
+        slider_link='$slider_link', 
+        slider_img_url='$dirr',
+        slider_sq='$slider_sq' where slider_id=$id";
+}
+$result=$conn->prepare($sql);
+
+if($result->execute()){
+    @move_uploaded_file($tmp_name,"$uploads_dir/$img_name.$f_type");
+       Header('Location:../slider.php?durum=ok');
+   }else
+       Header('Location:../slider.php?durum=error');
+
+
+}

@@ -58,6 +58,7 @@ if (!isset($_SESSION['admin_logged'])) {
                 <th scope="col">Slider Başlık</th>
                 <th scope="col">Slider Açıklama</th>
                 <th scope="col">Slider Link</th>
+                <th scope="col">Düzenle</th>
                 <th scope="col">Sil</th>
 
 
@@ -72,6 +73,7 @@ if (!isset($_SESSION['admin_logged'])) {
                   <td><?php echo $row_slider["slider_title"]; ?></td>
                   <td><?php echo $row_slider["slider_description"]; ?></td>
                   <td><img class="img-thumbnail" width="200px" src='../<?php echo $row_slider["slider_img_url"] ?>'/> </td> 
+                  <td><a href="slider-duzenle.php?slider_id=<?php echo $row_slider['slider_id']; ?>" class="btn btn-success">Düzenle</a></td>
                   <td><a href="settings/islem.php?slider_id=<?php echo $row_slider['slider_id']; ?>&slider_delete=ok" class="btn btn-warning">Sil</a></td>
                 </tr>
               <?php } ?>

@@ -56,6 +56,7 @@ if (!isset($_SESSION['admin_logged'])) {
                 <th scope="col">Eklenme Tarihi</th>
 
                 <th scope="col">Görsel</th>
+                <th scope="col">Düzenle</th>
 
                 <th scope="col">Sil</th>
 
@@ -69,6 +70,7 @@ if (!isset($_SESSION['admin_logged'])) {
                   <td><?php $timestamp = strtotime( time());
                         echo date("Y-m-d H:i:s", $row_gallery["date"]); ?></td>
                   <td><img class="img-thumbnail" width="200px" src='../<?php echo $row_gallery["url"] ?>'/> </td> 
+                  <td><a href="galeri-duzenle.php?photo_id=<?php echo $row_gallery['id']; ?>" class="btn btn-success">Düzenle</a></td>
                   <td><a href="settings/islem.php?photo_id=<?php echo $row_gallery['id']; ?>&gallery_delete=ok" class="btn btn-warning">Sil</a></td>
                 </tr>
               <?php } ?>

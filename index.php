@@ -1,6 +1,6 @@
 
     <?php include 'header.php';
-    $sql = "select * from slider order by slider_id DESC";
+    $sql = "select * from slider order by slider_sq ASC";
     $result = $conn->query($sql);
     kimOnline(session_id());
 
