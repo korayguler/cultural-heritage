@@ -18,5 +18,5 @@
       - Mobile friendly
 
 
-####Preview
+#### Preview
 ![cultural-heritage-preview](https://raw.githubusercontent.com/korayguler/cultural-heritage/master/preview.png)
