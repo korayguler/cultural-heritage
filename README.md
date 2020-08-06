@@ -1,9 +1,10 @@
-#### antioch cultural heritage protection website project
+### Antioch Cultural Heritage Protection Website Project
 
 
-##### used technologies
+#### Used Technologies
 
-      -- HTML / CSS / JAVASCRIPT
-      -- PHP / MYSQL
-      -- BOOTSTRAP
+      - Html, Css
+      - Javascript
+      - Php, Mysql
+      - Bootstrap
 
