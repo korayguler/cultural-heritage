@@ -1,11 +1,9 @@
-# Antakya Kültürel Mirası Koruma Derneği Website Projesi
+#### antioch cultural heritage protection website project
 
 
-### Kullanılan Teknolojiler
+##### used technologies
 
-      - HTML / CSS / JAVASCRIPT
-      - PHP / MYSQL
-      - BOOTSTRAP
+      -- HTML / CSS / JAVASCRIPT
+      -- PHP / MYSQL
+      -- BOOTSTRAP
 
-
-Hazırlayan : Koray Güler > [korayguler.com](http://korayguler.com/)
