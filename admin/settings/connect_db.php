@@ -4,11 +4,12 @@ session_set_cookie_params(600);
 session_start();
 ob_start();
 
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-$username="root";
-$pass="";
-$host="localhost";
-$database="antakya";
+$username=$url["user"];;
+$pass=$url["pass"];;
+$host=$url["host"];;
+$database=substr($url["path"], 1);;
 
 $conn = new mysqli($host, $username, $pass, $database);
 
